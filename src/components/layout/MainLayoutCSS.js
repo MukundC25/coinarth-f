@@ -1,11 +1,11 @@
 import React from 'react';
-import SimpleSidebar from './SimpleSidebar';
+import SidebarCSS from './SidebarCSS';
 import Header from './Header';
 
-const MainLayout = ({ children }) => {
+const MainLayoutCSS = ({ children }) => {
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <SimpleSidebar />
+      <SidebarCSS />
       <div className="flex-1 ml-[250px]">
         <Header />
         <main className="p-6 max-w-[1200px] mx-auto">
@@ -16,4 +16,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default MainLayoutCSS;

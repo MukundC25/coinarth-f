@@ -1,5 +1,4 @@
-'use client';
-
+import React from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import CurrentBalance from '../components/dashboard/CurrentBalance';
 import CibilScore from '../components/dashboard/CibilScore';
