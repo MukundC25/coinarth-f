@@ -1,6 +1,6 @@
 # COINARTH Financial Dashboard - React Implementation
 
-This project is a React implementation of the COINARTH Financial Dashboard, converted from the original HTML/CSS/JS version.
+This project is a React implementation of the COINARTH Financial Dashboard.
 
 ## Project Structure
 
