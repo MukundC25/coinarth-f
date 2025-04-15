@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# COINARTH Financial Dashboard - React Implementation
 
-## Getting Started
+This project is a React implementation of the COINARTH Financial Dashboard, converted from the original HTML/CSS/JS version.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+coinarth-react/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── dashboard/
+│   │   │   ├── CibilScore.jsx
+│   │   │   ├── CurrentBalance.jsx
+│   │   │   ├── ExpenseBreakdownChart.jsx
+│   │   │   ├── ExpensesCard.jsx
+│   │   │   ├── FinancialNews.jsx
+│   │   │   ├── IncomeExpensesChart.jsx
+│   │   │   ├── Recommendations.jsx
+│   │   │   ├── RecentTransactions.jsx
+│   │   │   └── SavingsCard.jsx
+│   │   ├── layout/
+│   │   │   ├── DashboardLayout.jsx
+│   │   │   ├── Header.jsx
+│   │   │   └── Sidebar.jsx
+│   │   └── ui/
+│   │       └── Card.jsx
+│   ├── data/
+│   │   └── mockData.js
+│   ├── pages/
+│   │   └── Dashboard.jsx
+│   ├── styles/
+│   │   └── global.js
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+└── vite.config.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Component-Based Architecture**: Modular components for better organization and reusability
+- **Styled Components**: Modern CSS-in-JS styling solution
+- **Responsive Design**: Works on all screen sizes
+- **Dark Mode**: Toggle between light and dark themes
+- **Interactive Charts**: Visualize financial data with Chart.js
+- **Mock Data**: Simulated financial data for demonstration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Components
 
-## Learn More
+### Layout Components
 
-To learn more about Next.js, take a look at the following resources:
+- **DashboardLayout**: Main layout wrapper with sidebar and header
+- **Sidebar**: Navigation sidebar with links to different sections
+- **Header**: Top header with search, notifications, and user profile
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Dashboard Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **CurrentBalance**: Displays the user's current balance
+- **CibilScore**: Shows the user's credit score with a visual indicator
+- **ExpensesCard**: Displays the user's total expenses
+- **SavingsCard**: Shows the user's total savings
+- **IncomeExpensesChart**: Bar chart comparing income and expenses
+- **ExpenseBreakdownChart**: Doughnut chart showing expense categories
+- **Recommendations**: Financial recommendations for the user
+- **FinancialNews**: Latest financial news
+- **RecentTransactions**: Table of recent financial transactions
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **React**: UI library for building component-based interfaces
+- **React Router**: For navigation between different sections
+- **Styled Components**: For component-scoped styling
+- **Chart.js**: For data visualization
+- **React Icons**: For icons throughout the application
+- **Vite**: For fast development and building
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Running the Project
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Start the development server:
+   ```
+   npm run dev
+   ```
+
+3. Build for production:
+   ```
+   npm run build
+   ```
+
+4. Preview the production build:
+   ```
+   npm run preview
+   ```
