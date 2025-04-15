@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
-import { 
-  FaHome, 
-  FaList, 
-  FaCreditCard, 
-  FaFileInvoice, 
-  FaChartLine, 
-  FaLandmark, 
-  FaGavel, 
-  FaQuestionCircle, 
-  FaCog, 
-  FaUser, 
-  FaSignOutAlt 
+import {
+  FaHome,
+  FaList,
+  FaCreditCard,
+  FaFileInvoice,
+  FaChartLine,
+  FaLandmark,
+  FaGavel,
+  FaQuestionCircle,
+  FaCog,
+  FaUser,
+  FaSignOutAlt
 } from 'react-icons/fa';
 
 const SidebarContainer = styled.aside`
@@ -100,9 +101,20 @@ const SidebarFooter = styled.div`
 
 const Sidebar = () => {
   const [activePath, setActivePath] = useState('/');
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleNavClick = (path) => {
     setActivePath(path);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out', error);
+    }
   };
 
   return (
@@ -114,67 +126,67 @@ const Sidebar = () => {
           <LogoRth>RTH</LogoRth>
         </Logo>
       </SidebarHeader>
-      
+
       <SidebarContent>
         <SidebarCategory>MANAGE</SidebarCategory>
-        
+
         <SidebarNav>
-          <SidebarLink 
-            to="/" 
+          <SidebarLink
+            to="/"
             className={activePath === '/' ? 'active' : ''}
             onClick={() => handleNavClick('/')}
           >
             <FaHome />
             <span>Overview</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/assets" 
+
+          <SidebarLink
+            to="/assets"
             className={activePath === '/assets' ? 'active' : ''}
             onClick={() => handleNavClick('/assets')}
           >
             <FaList />
             <span>Assets</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/expenses" 
+
+          <SidebarLink
+            to="/expenses"
             className={activePath === '/expenses' ? 'active' : ''}
             onClick={() => handleNavClick('/expenses')}
           >
             <FaCreditCard />
             <span>Expenses</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/tax" 
+
+          <SidebarLink
+            to="/tax"
             className={activePath === '/tax' ? 'active' : ''}
             onClick={() => handleNavClick('/tax')}
           >
             <FaFileInvoice />
             <span>Tax</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/investment" 
+
+          <SidebarLink
+            to="/investment"
             className={activePath === '/investment' ? 'active' : ''}
             onClick={() => handleNavClick('/investment')}
           >
             <FaChartLine />
             <span>Investment</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/govt-schemes" 
+
+          <SidebarLink
+            to="/govt-schemes"
             className={activePath === '/govt-schemes' ? 'active' : ''}
             onClick={() => handleNavClick('/govt-schemes')}
           >
             <FaLandmark />
             <span>Govt. Schemes</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/legal" 
+
+          <SidebarLink
+            to="/legal"
             className={activePath === '/legal' ? 'active' : ''}
             onClick={() => handleNavClick('/legal')}
           >
@@ -183,36 +195,36 @@ const Sidebar = () => {
           </SidebarLink>
         </SidebarNav>
       </SidebarContent>
-      
+
       <SidebarFooter>
         <SidebarNav>
-          <SidebarLink 
-            to="/support" 
+          <SidebarLink
+            to="/support"
             onClick={() => handleNavClick('/support')}
           >
             <FaQuestionCircle />
             <span>Help & Support</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/settings" 
+
+          <SidebarLink
+            to="/settings"
             onClick={() => handleNavClick('/settings')}
           >
             <FaCog />
             <span>Settings</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/profile" 
+
+          <SidebarLink
+            to="/profile"
             onClick={() => handleNavClick('/profile')}
           >
             <FaUser />
             <span>Profile</span>
           </SidebarLink>
-          
-          <SidebarLink 
-            to="/logout" 
-            onClick={() => handleNavClick('/logout')}
+
+          <SidebarLink
+            to="#"
+            onClick={handleLogout}
           >
             <FaSignOutAlt />
             <span>Log out</span>
