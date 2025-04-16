@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaExclamationCircle, FaCheckCircle, FaEnvelope } from 'react-icons/fa';
+import Logo from '../components/common/Logo';
 
 const Container = styled.div`
   display: flex;
@@ -21,29 +22,15 @@ const FormCard = styled.div`
   width: 100%;
   max-width: 450px;
   transition: transform 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
 `;
 
-const Logo = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+const StyledLogo = styled(Logo)`
   margin-bottom: 2rem;
-  text-align: center;
-`;
-
-const LogoCoin = styled.span`
-  color: #f59e0b;
-`;
-
-const LogoA = styled.span`
-  color: var(--text-color);
-`;
-
-const LogoRth = styled.span`
-  color: #f59e0b;
+  margin-top: 1rem;
 `;
 
 const Title = styled.h2`
@@ -82,7 +69,7 @@ const Input = styled.input`
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  
+
   &:focus {
     outline: none;
     border-color: var(--blue);
@@ -104,11 +91,11 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   &:hover {
     background-color: #2563eb;
   }
-  
+
   &:disabled {
     background-color: #93c5fd;
     cursor: not-allowed;
@@ -140,12 +127,12 @@ const LinkText = styled.p`
   font-size: 0.875rem;
   text-align: center;
   margin-top: 1.5rem;
-  
+
   a {
     color: var(--blue);
     text-decoration: none;
     font-weight: 500;
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -168,17 +155,17 @@ const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [formTouched, setFormTouched] = useState(false);
-  
+
   // Validate email format
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return re.test(String(email).toLowerCase());
   };
-  
+
   // Handle input blur for validation
   const handleBlur = () => {
     setFormTouched(true);
-    
+
     if (!email.trim()) {
       setEmailError('Email is required');
     } else if (!validateEmail(email)) {
@@ -187,31 +174,31 @@ const ForgotPassword = () => {
       setEmailError('');
     }
   };
-  
+
   // Check if form is valid
   const isFormValid = () => {
     return email.trim() !== '' && validateEmail(email);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormTouched(true);
-    
+
     // Validate email
     handleBlur();
-    
+
     // Check if form is valid
     if (!isFormValid()) {
       return setError('Please enter a valid email address');
     }
-    
+
     try {
       setError('');
       setLoading(true);
-      
+
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       setSuccess(true);
     } catch (err) {
       setError('Failed to send password reset email');
@@ -220,26 +207,22 @@ const ForgotPassword = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <Container>
       <FormCard>
-        <Logo>
-          <LogoCoin>COIN</LogoCoin>
-          <LogoA>A</LogoA>
-          <LogoRth>RTH</LogoRth>
-        </Logo>
+        <StyledLogo />
         <Title>Reset your password</Title>
         <Description>
           Enter your email address and we'll send you a link to reset your password.
         </Description>
-        
+
         {error && (
           <ErrorMessage>
             <FaExclamationCircle /> {error}
           </ErrorMessage>
         )}
-        
+
         {success ? (
           <>
             <SuccessMessage>
@@ -253,13 +236,13 @@ const ForgotPassword = () => {
           <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label htmlFor="email">Email Address</Label>
-              <Input 
-                type="email" 
-                id="email" 
-                value={email} 
+              <Input
+                type="email"
+                id="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={handleBlur}
-                required 
+                required
               />
               {emailError && formTouched && (
                 <InputFeedback error>
@@ -267,9 +250,9 @@ const ForgotPassword = () => {
                 </InputFeedback>
               )}
             </FormGroup>
-            
-            <Button 
-              type="submit" 
+
+            <Button
+              type="submit"
               disabled={loading || (formTouched && !isFormValid())}
             >
               {loading ? (
@@ -282,7 +265,7 @@ const ForgotPassword = () => {
             </Button>
           </Form>
         )}
-        
+
         <LinkText>
           Remember your password? <Link to="/login">Log In</Link>
         </LinkText>

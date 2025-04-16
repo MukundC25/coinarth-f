@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../context/AuthContext';
 import { FaGoogle, FaFacebook, FaApple, FaExclamationCircle, FaLock } from 'react-icons/fa';
+import Logo from '../components/common/Logo';
 
 const Container = styled.div`
   display: flex;
@@ -28,23 +29,9 @@ const FormCard = styled.div`
   }
 `;
 
-const Logo = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+const StyledLogo = styled(Logo)`
   margin-bottom: 2rem;
-  text-align: center;
-`;
-
-const LogoCoin = styled.span`
-  color: #f59e0b;
-`;
-
-const LogoA = styled.span`
-  color: var(--text-color);
-`;
-
-const LogoRth = styled.span`
-  color: #f59e0b;
+  margin-top: 1rem;
 `;
 
 const Title = styled.h2`
@@ -310,11 +297,7 @@ const Login = () => {
   return (
     <Container>
       <FormCard>
-        <Logo>
-          <LogoCoin>COIN</LogoCoin>
-          <LogoA>A</LogoA>
-          <LogoRth>RTH</LogoRth>
-        </Logo>
+        <StyledLogo />
         <Title>Log in to your account</Title>
 
         {error && (
