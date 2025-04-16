@@ -1,4 +1,5 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect, useCallback } from 'react';
+import api from '../services/api';
 
 // Create the authentication context
 const AuthContext = createContext();
@@ -11,48 +12,104 @@ export const useAuth = () => {
 // Provider component that wraps the app and makes auth object available to any child component
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  // Check if user is already logged in (from localStorage)
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) {
-      setCurrentUser(JSON.parse(user));
+  const [error, setError] = useState('');
+
+  // Refresh token function
+  const refreshToken = useCallback(async () => {
+    try {
+      const response = await api.refreshToken();
+      setAccessToken(response.accessToken);
+      setCurrentUser(response.user);
+      return response.accessToken;
+    } catch (error) {
+      setCurrentUser(null);
+      setAccessToken(null);
+      throw error;
     }
-    setLoading(false);
   }, []);
 
+  // Check if user is already logged in (using refresh token)
+  useEffect(() => {
+    const initAuth = async () => {
+      try {
+        // Try to refresh the token
+        await refreshToken();
+      } catch (error) {
+        // If refresh fails, user is not logged in
+        console.log('Not logged in or refresh token expired');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initAuth();
+  }, [refreshToken]);
+
   // Sign up function
-  const signup = (email, password, name) => {
-    // In a real app, this would be an API call to create a user
-    const user = { email, name, id: Date.now().toString() };
-    localStorage.setItem('user', JSON.stringify(user));
-    setCurrentUser(user);
-    return Promise.resolve(user);
+  const signup = async (email, password, name) => {
+    try {
+      setError('');
+      const response = await api.register({ email, password, name });
+      setCurrentUser(response.user);
+      setAccessToken(response.accessToken);
+      return response.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
   };
 
   // Login function
-  const login = (email, password) => {
-    // In a real app, this would be an API call to authenticate
-    const user = { email, name: email.split('@')[0], id: Date.now().toString() };
-    localStorage.setItem('user', JSON.stringify(user));
-    setCurrentUser(user);
-    return Promise.resolve(user);
+  const login = async (email, password) => {
+    try {
+      setError('');
+      const response = await api.login({ email, password });
+      setCurrentUser(response.user);
+      setAccessToken(response.accessToken);
+      return response.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
+  };
+
+  // Social login function
+  const socialLogin = async (provider) => {
+    try {
+      setError('');
+      const response = await api.socialLogin(provider);
+      setCurrentUser(response.user);
+      setAccessToken(response.accessToken);
+      return response.user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
   };
 
   // Logout function
-  const logout = () => {
-    localStorage.removeItem('user');
-    setCurrentUser(null);
-    return Promise.resolve();
+  const logout = async () => {
+    try {
+      await api.logout();
+      setCurrentUser(null);
+      setAccessToken(null);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   const value = {
     currentUser,
+    accessToken,
     signup,
     login,
+    socialLogin,
     logout,
-    loading
+    refreshToken,
+    loading,
+    error
   };
 
   return (
