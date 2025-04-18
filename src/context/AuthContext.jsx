@@ -34,8 +34,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // Try to refresh the token
-        await refreshToken();
+        // Check if there's a refresh token in localStorage
+        const storedRefreshToken = localStorage.getItem('refreshToken');
+        if (storedRefreshToken) {
+          // Try to refresh the token
+          await refreshToken();
+        }
       } catch (error) {
         // If refresh fails, user is not logged in
         console.log('Not logged in or refresh token expired');

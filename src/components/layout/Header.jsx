@@ -138,7 +138,7 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
             alt="User Avatar"
           />
           <UserInfo>
-            <UserName>Mukund Chaudhary</UserName>
+            <UserName>Yash More</UserName>
             <UserStatus>Premium User</UserStatus>
           </UserInfo>
         </UserProfile>
