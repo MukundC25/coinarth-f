@@ -79,22 +79,95 @@ coinarth-react/
 
 ## Running the Project
 
+### Option 1: Running with Docker (Recommended)
+
+This project is configured to run in a Docker container, which isolates it from other projects and ensures consistent behavior across different environments.
+
+#### Prerequisites
+
+- Docker installed on your machine
+- Docker Compose installed on your machine
+
+#### Starting the Application with Docker
+
+You can start the application in Docker using one of the following methods:
+
+##### Method 1: Using npm scripts
+
+```bash
+npm run docker:start
+```
+
+##### Method 2: Using the shell script directly
+
+```bash
+./docker-start.sh
+```
+
+##### Method 3: Using Docker Compose directly
+
+```bash
+docker-compose up -d
+```
+
+#### Accessing the Application
+
+Once the Docker container is running, you can access the application at:
+
+```
+http://localhost:5173/#/login
+```
+
+#### Stopping the Application
+
+To stop the application, you can use one of the following methods:
+
+##### Method 1: Using npm scripts
+
+```bash
+npm run docker:stop
+```
+
+##### Method 2: Using the shell script directly
+
+```bash
+./docker-stop.sh
+```
+
+##### Method 3: Using Docker Compose directly
+
+```bash
+docker-compose down
+```
+
+#### Viewing Logs
+
+To view the logs of the running container:
+
+```bash
+docker-compose logs -f
+```
+
+### Option 2: Running without Docker
+
+If you prefer to run the application without Docker:
+
 1. Install dependencies:
-   ```
+   ```bash
    npm install
    ```
 
 2. Start the development server:
-   ```
+   ```bash
    npm run dev
    ```
 
 3. Build for production:
-   ```
+   ```bash
    npm run build
    ```
 
 4. Preview the production build:
-   ```
+   ```bash
    npm run preview
    ```
