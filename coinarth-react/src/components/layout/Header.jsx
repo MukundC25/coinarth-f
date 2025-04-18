@@ -91,7 +91,7 @@ const Avatar = styled.img`
 
 const UserInfo = styled.div`
   display: none;
-  
+
   @media (min-width: 768px) {
     display: block;
   }
@@ -113,32 +113,32 @@ const Header = ({ toggleDarkMode, isDarkMode }) => {
       <SearchContainer>
         <SearchInput type="text" placeholder="Search..." />
       </SearchContainer>
-      
+
       <HeaderActions>
         <ActionIcon>
           <FaBell />
           <NotificationBadge>3</NotificationBadge>
         </ActionIcon>
-        
+
         <ActionIcon>
           <FaEnvelope />
         </ActionIcon>
-        
+
         <ActionIcon>
           <FaCalendar />
         </ActionIcon>
-        
+
         <ActionIcon onClick={toggleDarkMode}>
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </ActionIcon>
-        
+
         <UserProfile>
-          <Avatar 
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
-            alt="User Avatar" 
+          <Avatar
+            src="/images/profile-image.jpeg"
+            alt="User Avatar"
           />
           <UserInfo>
-            <UserName>Yash Sharma</UserName>
+            <UserName>Mukund Chaudhary</UserName>
             <UserStatus>Premium User</UserStatus>
           </UserInfo>
         </UserProfile>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styled from 'styled-components';
+import Logo from '../common/Logo';
 import {
   FaHome,
   FaList,
@@ -32,21 +33,9 @@ const SidebarHeader = styled.div`
   text-align: center;
 `;
 
-const Logo = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
-const LogoCoin = styled.span`
-  color: #f59e0b;
-`;
-
-const LogoA = styled.span`
-  color: white;
-`;
-
-const LogoRth = styled.span`
-  color: #f59e0b;
+const StyledLogo = styled(Logo)`
+  margin: 0 auto;
+  /* Logo in sidebar already has dark background, so we don't need the extra background */
 `;
 
 const SidebarContent = styled.div`
@@ -120,11 +109,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarHeader>
-        <Logo>
-          <LogoCoin>COIN</LogoCoin>
-          <LogoA>A</LogoA>
-          <LogoRth>RTH</LogoRth>
-        </Logo>
+        <StyledLogo darkMode={true} />
       </SidebarHeader>
 
       <SidebarContent>
