@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/common/Logo';
 
 const Container = styled.div`
   display: flex;
@@ -21,29 +22,15 @@ const FormCard = styled.div`
   width: 100%;
   max-width: 450px;
   transition: transform 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
 `;
 
-const Logo = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+const StyledLogo = styled(Logo)`
   margin-bottom: 2rem;
-  text-align: center;
-`;
-
-const LogoCoin = styled.span`
-  color: #f59e0b;
-`;
-
-const LogoA = styled.span`
-  color: var(--text-color);
-`;
-
-const LogoRth = styled.span`
-  color: #f59e0b;
+  margin-top: 1rem;
 `;
 
 const Title = styled.h2`
@@ -75,7 +62,7 @@ const Input = styled.input`
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  
+
   &:focus {
     outline: none;
     border-color: var(--blue);
@@ -93,11 +80,11 @@ const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  
+
   &:hover {
     background-color: #2563eb;
   }
-  
+
   &:disabled {
     background-color: #93c5fd;
     cursor: not-allowed;
@@ -114,12 +101,12 @@ const LinkText = styled.p`
   font-size: 0.875rem;
   text-align: center;
   margin-top: 1.5rem;
-  
+
   a {
     color: var(--blue);
     text-decoration: none;
     font-weight: 500;
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -128,12 +115,12 @@ const LinkText = styled.p`
 
 const ForgotPassword = styled.div`
   text-align: right;
-  
+
   a {
     font-size: 0.875rem;
     color: var(--blue);
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -145,13 +132,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const { login } = useAuth();
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setError('');
       setLoading(true);
@@ -164,50 +151,46 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <Container>
       <FormCard>
-        <Logo>
-          <LogoCoin>COIN</LogoCoin>
-          <LogoA>A</LogoA>
-          <LogoRth>RTH</LogoRth>
-        </Logo>
+        <StyledLogo />
         <Title>Log in to your account</Title>
-        
+
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        
+
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label htmlFor="email">Email Address</Label>
-            <Input 
-              type="email" 
-              id="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
+            <Input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </FormGroup>
-          
+
           <FormGroup>
             <Label htmlFor="password">Password</Label>
-            <Input 
-              type="password" 
-              id="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
+            <Input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <ForgotPassword>
               <Link to="/forgot-password">Forgot password?</Link>
             </ForgotPassword>
           </FormGroup>
-          
+
           <Button type="submit" disabled={loading}>
             {loading ? 'Logging In...' : 'Log In'}
           </Button>
         </Form>
-        
+
         <LinkText>
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </LinkText>
