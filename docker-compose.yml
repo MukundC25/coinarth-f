@@ -11,6 +11,26 @@ services:
     volumes:
       - ./src:/app/src
       - ./public:/app/public
+      - node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - FAST_REFRESH=false
     restart: unless-stopped
+    # Isolate the container network
+    networks:
+      - coinarth-network
+    # Limit resources to prevent conflicts
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+volumes:
+  node_modules:
+
+networks:
+  coinarth-network:
+    driver: bridge
