@@ -27,9 +27,9 @@ const DashboardLayout = ({ children }) => {
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark-mode');
+      document.documentElement.setAttribute('data-theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   }, [isDarkMode]);
 

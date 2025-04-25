@@ -25,10 +25,11 @@ const SearchInput = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  background-color: #f9fafb;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
   outline: none;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 
   &:focus {
     border-color: var(--blue);
@@ -46,17 +47,18 @@ const ActionIcon = styled.div`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: #f3f4f6;
+  background-color: var(--input-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6b7280;
+  color: var(--text-secondary);
   cursor: pointer;
   position: relative;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: #e5e7eb;
+    background-color: var(--border-color);
+    color: var(--blue);
   }
 `;
 
@@ -104,7 +106,7 @@ const UserName = styled.div`
 
 const UserStatus = styled.div`
   font-size: 0.75rem;
-  color: var(--text-light);
+  color: var(--text-secondary);
 `;
 
 const Header = ({ toggleDarkMode, isDarkMode }) => {

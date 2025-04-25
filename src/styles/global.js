@@ -2,42 +2,45 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   :root {
+    /* Light Theme Colors */
     --primary-bg: #f8fafc;
-    --sidebar-bg: #070B14;
     --card-bg: #ffffff;
-    --card-bg-secondary: #f9fafb;
-    --text-color: #333333;
-    --text-secondary: #6b7280;
-    --text-light: #6b7280;
-    --border-color: rgba(0, 0, 0, 0.05);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #64748b;
     --blue: #3b82f6;
-    --blue-light: #eff6ff;
     --green: #10b981;
-    --green-light: #ecfdf5;
     --red: #ef4444;
-    --red-light: #fef2f2;
-    --purple: #8b5cf6;
-    --purple-light: #f5f3ff;
     --yellow: #f59e0b;
-    --yellow-light: #fffbeb;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --purple: #8b5cf6;
+    --border-color: #e2e8f0;
+    --input-bg: #f8fafc;
+    --sidebar-bg: #070B14;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --transition: all 0.3s ease;
-    --error-color: #ef4444;
-    --success-color: #10b981;
-    --input-background: #ffffff;
   }
 
-  .dark-mode {
-    --primary-bg: #121212;
-    --sidebar-bg: #000000;
-    --card-bg: #1e1e1e;
-    --card-bg-secondary: #2d2d2d;
-    --text-color: #ffffff;
-    --text-secondary: #a0aec0;
-    --text-light: #a0aec0;
-    --border-color: rgba(255, 255, 255, 0.05);
-    --input-background: #2d2d2d;
+  [data-theme="dark"] {
+    /* Dark Theme Colors */
+    --primary-bg: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-light: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --purple: #8b5cf6;
+    --border-color: #334155;
+    --input-bg: #0f172a;
+    --sidebar-bg: #070B14;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s ease;
   }
 
   * {
@@ -48,25 +51,37 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--text-color);
     background-color: var(--primary-bg);
-    line-height: 1.5;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   a {
+    color: var(--blue);
     text-decoration: none;
-    color: inherit;
   }
 
-  button {
-    cursor: pointer;
-    border: none;
-    background: none;
+  button, input, select, textarea {
     font-family: inherit;
   }
 
-  ul, ol {
-    list-style: none;
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
   }
 `;
 

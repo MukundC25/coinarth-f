@@ -19,7 +19,7 @@ import {
 
 const SidebarContainer = styled.aside`
   width: 260px;
-  background-color: var(--sidebar-bg);
+  background-color: #070B14; /* Dark sidebar background */
   color: white;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@ const SidebarContent = styled.div`
 
 const SidebarCategory = styled.p`
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #94a3b8; /* Light gray for sidebar category */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
@@ -65,7 +65,7 @@ const SidebarLink = styled(Link)`
   border-radius: 0.5rem;
   color: #9ca3af;
   text-decoration: none;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -74,6 +74,7 @@ const SidebarLink = styled(Link)`
   &.active {
     background-color: white;
     color: black;
+    font-weight: 600;
   }
 
   svg {
