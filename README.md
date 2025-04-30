@@ -75,7 +75,7 @@ coinarth-react/
 - **Styled Components**: For component-scoped styling
 - **Chart.js**: For data visualization
 - **React Icons**: For icons throughout the application
-- **Vite**: For fast development and building
+- **Vite**: For fast development and building of the application
 
 ## Running the Project
 
